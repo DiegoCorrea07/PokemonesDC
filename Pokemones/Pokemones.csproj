@@ -64,6 +64,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Update="ListadoPokemones.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </None>
 	  <None Update="ResumenPokemon.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </None>

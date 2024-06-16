@@ -1,30 +1,53 @@
 ﻿using Pokemones.Models;
 using Pokemones.Services;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
 
 namespace Pokemones
 {
-    public partial class MainPage : ContentPage
+    public partial class MainPage : ContentPage, INotifyPropertyChanged
     {
+        private List<PokemosItem> _listado_pokemones;
+
+        public List<PokemosItem> listado_pokemones
+        {
+            get { return _listado_pokemones; }
+            set
+            {
+                _listado_pokemones = value;
+                OnPropertyChanged();
+            }
+        }
 
         public MainPage()
         {
             InitializeComponent();
+            BindingContext = this;
             CargarData();
         }
 
         public async void CargarData()
         {
             PokemonServices poke_services = new PokemonServices();
-            var listado_pokemones = await poke_services.DevuelveListadoPokemones();
-
-            ListaPokemones.ItemsSource = listado_pokemones;
+            listado_pokemones = await poke_services.DevuelveListadoPokemones();
+            Debug.WriteLine("ola");
+            Debug.WriteLine(JsonConvert.SerializeObject(listado_pokemones));
         }
-        public async void VerInfoPokemon(object sender, SelectedItemChangedEventArgs e)
+
+        public void VerInfoPokemon(object sender, SelectedItemChangedEventArgs e)
         {
-            PokemonInfo poke_info = (PokemonInfo)e.SelectedItem;
-            Navigation.PushAsync(new ResumenPokemon(poke_info));
+            PokemosItem poke_info = (PokemosItem)e.SelectedItem;
+            Navigation.PushAsync(new ResumenPokemon(poke_info.url));
         }
 
-    }
+        public event PropertyChangedEventHandler PropertyChanged;
 
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
 }

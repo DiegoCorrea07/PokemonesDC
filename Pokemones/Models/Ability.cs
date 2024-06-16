@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Pokemones.Models
 {
-    internal class Ability
+    public class Ability
     {
-        public string Name { get; set; }
-        public string URl { get; set; }
+        public string name { get; set; }
+        public string url { get; set; }
     }
 }

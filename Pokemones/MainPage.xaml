@@ -4,27 +4,34 @@
              x:Class="Pokemones.MainPage">
 
     <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-            <ListView x:Name="ListaPokemones" ItemSelected="VerInfoPokemon">
+        <VerticalStackLayout>
+            <ListView x:Name="ListaPokemones" ItemsSource="{Binding listado_pokemones}" ItemSelected="VerInfoPokemon">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout>
-                                <Label Text="{Binding name}"></Label>
-                                <Label Text="{Binding url}"></Label>
-                                
-                                
-                            </StackLayout>
-                            
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Column="1"
+                                       Text="{Binding name}"
+                                       FontAttributes="Bold" />
+                                <Label Grid.Row="1"
+                                       Grid.Column="1"
+                                       Text="{Binding url}"
+                                       FontAttributes="Italic"
+                                       VerticalOptions="End" />
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-                
             </ListView>
-
-
         </VerticalStackLayout>
     </ScrollView>
 
