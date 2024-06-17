@@ -33,7 +33,8 @@ namespace Pokemones
         {
             PokemonServices poke_services = new PokemonServices();
             listado_pokemones = await poke_services.DevuelveListadoPokemones();
-            Debug.WriteLine("ola");
+
+            Debug.WriteLine("");
             Debug.WriteLine(JsonConvert.SerializeObject(listado_pokemones));
         }
 

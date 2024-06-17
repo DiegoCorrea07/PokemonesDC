@@ -21,16 +21,22 @@
 
                                 <Label Grid.Column="1"
                                        Text="{Binding name}"
+                                       TextColor="Black"
                                        FontAttributes="Bold" />
                                 <Label Grid.Row="1"
                                        Grid.Column="1"
                                        Text="{Binding url}"
+                                       TextColor="Red"
                                        FontAttributes="Italic"
                                        VerticalOptions="End" />
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <StackLayout HeightRequest="50"/>
+                </ListView.Footer>
+               
             </ListView>
         </VerticalStackLayout>
     </ScrollView>
